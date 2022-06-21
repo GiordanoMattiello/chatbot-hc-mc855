@@ -7,10 +7,11 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController,UINavigationBarDelegate {
     
     @IBOutlet weak var startChat: UIView!
     @IBOutlet weak var startChatLabel: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +21,14 @@ class MainViewController: UIViewController {
         self.startChat.layer.masksToBounds = true;
         self.startChatLabel.text = "Iniciar Chat"
     }
+    
     @objc func startChat(_ sender:UITapGestureRecognizer){
-        // do other task
+        performSegue(withIdentifier: "chat-segue", sender: nil)
         print("Start chat")
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }
 
