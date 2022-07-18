@@ -15,7 +15,6 @@ class ChatViewController: UIViewController{
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var messageInput: UITextField!
     @IBOutlet weak var sendButton: UIImageView!
-    
     @IBOutlet weak var bottomConstraintForKeyboard: NSLayoutConstraint!
     
     
@@ -37,34 +36,45 @@ class ChatViewController: UIViewController{
     @objc func clearKeyboard() {
         view.endEditing(true)
     }
+    
     @objc func sendMessage(){
         let message = MessageDto(messageText:  messageInput.text , date: .now, response: false )
         messages.append(message)
+        let message2 = MessageDto(messageText:  "Digitando... " , date: .now, response: true )
+        messages.append(message2)
+        let index = messages.count-1
+        if let text = messageInput.text {
+            ChatService.shared.getMessage(question: text ,completion: { message in
+                let seconds = 0.5
+                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                    self.messages[index] = message.toMessageDTO()
+                    self.rollToTableEnd()
+                }
+            })
+        }
         messageInput.text = ""
-        
-        tableView.reloadData()
-        let indexPath:IndexPath = IndexPath(row:(messages.count - 1), section:0)
-        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        rollToTableEnd()
         clearKeyboard()
     }
     
+    func rollToTableEnd(){
+        tableView.reloadData()
+        let indexPath:IndexPath = IndexPath(row:(messages.count - 1), section:0)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ChatMessageCell.self, forCellReuseIdentifier: cellId)
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(named: "background")
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         
         headerView.addBottomShadow()
         bottomView.addTopShadow()
         let tapToRemoveKeyBoard = UITapGestureRecognizer(target: self, action: #selector(clearKeyboard))
         self.view.addGestureRecognizer(tapToRemoveKeyBoard)
-        
-
-        for i in 0...20{
-            let message = MessageDto(messageText: "\(i) askmdoasdmasdm asi dmais mdias mdasimasmdiasm diasmdiamsd iamsdim asidmasi aksmdiasmd" , date: .now, response: i%2 == 0 )
-            messages.append(message)
-        }
+        self.messages.append(MessageDto(messageText: "Olá eu sou o marcelinho, vou te ajudar na sua vinda ao Ambulatório de Pediatria do HC. Envie sua dúvida aqui.", date: .now, response: true) )
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self,

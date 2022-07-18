@@ -20,6 +20,7 @@
 		615CCCDD284AA450001BCBAC /* MessageDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615CCCDC284AA450001BCBAC /* MessageDto.swift */; };
 		615CCCDF284AB059001BCBAC /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615CCCDE284AB058001BCBAC /* ChatViewController.swift */; };
 		61CB64542851791C0010A073 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CB64532851791C0010A073 /* UIViewExtension.swift */; };
+		61CC9ED1286F9B93000BBFC6 /* MessageFromServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CC9ED0286F9B93000BBFC6 /* MessageFromServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		615CCCDC284AA450001BCBAC /* MessageDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDto.swift; sourceTree = "<group>"; };
 		615CCCDE284AB058001BCBAC /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		61CB64532851791C0010A073 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		61CC9ED0286F9B93000BBFC6 /* MessageFromServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFromServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				615CCCDC284AA450001BCBAC /* MessageDto.swift */,
+				61CC9ED0286F9B93000BBFC6 /* MessageFromServer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61CC9ED1286F9B93000BBFC6 /* MessageFromServer.swift in Sources */,
 				615CCCDD284AA450001BCBAC /* MessageDto.swift in Sources */,
 				614660D42842858F00504A05 /* MainViewController.swift in Sources */,
 				615CCCDB284AA43C001BCBAC /* ChatService.swift in Sources */,
